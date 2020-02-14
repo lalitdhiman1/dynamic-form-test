@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
+import *  as  data  from './data.json';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dynamic-form-test';
+  public form: FormGroup;
+
+  public fields: any  = (data  as  any).default;
+   
+   
+
+  constructor() {
+    this.form = new FormGroup({
+      fields: new FormControl(JSON.stringify(this.fields))
+    })
+    
+
+  }
+
+   
+  getFields() {
+    return this.fields;
+  }
+
+   
 }
